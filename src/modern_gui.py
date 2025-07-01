@@ -17,7 +17,8 @@ from typing import List, Optional, Dict, Any
 from .models import ParkingSpace, OccupancyStatus, AnalysisStats
 from .video_manager import VideoManager
 from .detector import SmartDetector
-from .analyzer import OccupancyAnalyzer
+from .working_analyzer import WorkingOccupancyAnalyzer  # Analizador que REALMENTE funciona
+from .simple_analyzer import SimpleOccupancyAnalyzer  # Analizador simple por threshold
 from .file_manager import FileManager
 from .space_editor import SpaceEditor
 from .legacy_detector import LegacySpaceEditor, LegacyOccupancyDetector, LegacyVideoProcessor
@@ -38,7 +39,8 @@ class ModernCarParkGUI:
         # Componentes del sistema
         self.video_manager = VideoManager()
         self.detector = SmartDetector()
-        self.analyzer = OccupancyAnalyzer()
+        self.analyzer = WorkingOccupancyAnalyzer()  # Analizador principal (working)
+        self.simple_analyzer = SimpleOccupancyAnalyzer()  # Analizador simple
         self.space_editor = None
         
         # Componentes legacy mejorados
@@ -279,15 +281,15 @@ class ModernCarParkGUI:
         
         # Selector de método de análisis
         ttk.Label(config_frame, text="Método de Análisis:").pack(anchor=tk.W, pady=(0, 5))
-        self.analysis_method = tk.StringVar(value="adaptive")
+        self.analysis_method = tk.StringVar(value="simple")
         method_combo = ttk.Combobox(
             config_frame, 
             textvariable=self.analysis_method,
-            values=["legacy", "adaptive", "background", "smart"],
+            values=["simple", "working"],
             state="readonly"
         )
         method_combo.pack(fill=tk.X, pady=(0, 10))
-        ModernTooltip(method_combo, "Selecciona el algoritmo de análisis")
+        ModernTooltip(method_combo, "Selecciona el algoritmo de análisis: 'simple' usa threshold básico, 'working' replica el código exitoso")
         
         # Controles de espacios
         spaces_card = ModernWidgets.create_info_card(
@@ -660,8 +662,17 @@ class ModernCarParkGUI:
             return
         
         try:
-            # Realizar análisis
-            self.analysis_results = self.analyzer.analyze_occupancy(self.current_frame, self.spaces)
+            # Usar el analizador seleccionado para análisis manual
+            method = self.analysis_method.get()
+            
+            if method == "simple":
+                self.analysis_results = self.simple_analyzer.analyze_spaces(self.current_frame, self.spaces)
+            elif method == "working":
+                # Usar el analizador que replica el main.py exitoso
+                self.analysis_results = self.analyzer.analyze_spaces(self.current_frame, self.spaces)
+            else:
+                # Por defecto usar working
+                self.analysis_results = self.analyzer.analyze_spaces(self.current_frame, self.spaces)
             
             # Agregar a historial
             timestamp = datetime.now().strftime("%H:%M:%S")
@@ -1268,18 +1279,15 @@ class ModernCarParkGUI:
                         # Usar el método seleccionado
                         method = self.analysis_method.get()
                         
-                        if method == "adaptive":
-                            self.analysis_results = self.analyzer.analyze_adaptive_threshold(frame, self.spaces)
-                        elif method == "background":
-                            self.analysis_results = self.analyzer.analyze_background_subtraction(frame, self.spaces)
-                        elif method == "legacy":
-                            self.analysis_results = self.analyzer.analyze_fixed_threshold(frame, self.spaces)
-                        elif method == "smart":
-                            self.analysis_results = self.analyzer.analyze_with_history(frame, self.spaces, "adaptive")
+                        if method == "simple":
+                            # Usar analizador simple por threshold
+                            self.analysis_results = self.simple_analyzer.analyze_spaces(frame, self.spaces)
+                        elif method == "working":
+                            # Usar analizador que replica el código exitoso original main.py
+                            self.analysis_results = self.analyzer.analyze_spaces(frame, self.spaces)
                         else:
-                            # Fallback a legacy detector si no hay método válido
-                            results, _ = self.legacy_detector.check_parking_spaces(frame, self.spaces)
-                            self.analysis_results = results
+                            # Por defecto usar el working analyzer que sabemos que funciona
+                            self.analysis_results = self.analyzer.analyze_spaces(frame, self.spaces)
                         
                         # Actualizar estadísticas en tiempo real
                         self.root.after(0, self.update_real_time_stats)
