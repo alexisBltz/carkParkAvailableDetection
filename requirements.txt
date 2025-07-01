@@ -1,0 +1,35 @@
+# CarPark Project - Dependencias v2.0
+# Incluye dependencias para la versión original Y refactorizada
+
+# === DEPENDENCIAS PRINCIPALES (REQUERIDAS) ===
+opencv-python>=4.8.0     # Procesamiento de imágenes y video
+numpy>=1.24.0            # Operaciones numéricas
+Pillow>=10.0.0           # Manipulación de imágenes para GUI
+
+# === GUI DEPENDENCIES ===
+# tkinter - Incluido en Python estándar (no necesita instalación)
+
+# === DEPENDENCIAS PARA ANÁLISIS AVANZADO ===
+scipy>=1.11.0            # Algoritmos matemáticos avanzados
+scikit-image>=0.21.0     # Procesamiento de imágenes científico
+
+# === DEPENDENCIAS OPCIONALES PARA ML ===
+# Descomenta si quieres usar análisis con Machine Learning
+# tensorflow>=2.13.0
+# torch>=2.0.0
+# torchvision>=0.15.0
+# scikit-learn>=1.3.0
+
+# === HERRAMIENTAS DE DESARROLLO (OPCIONAL) ===
+# pytest>=7.4.0          # Tests automatizados
+# black>=23.0.0           # Formateo de código
+# mypy>=1.5.0             # Type checking
+# flake8>=6.0.0           # Linting
+
+# === DEPENDENCIAS PARA EXPORTACIÓN AVANZADA ===
+# pandas>=2.0.0          # Análisis de datos
+# openpyxl>=3.1.0        # Exportación a Excel
+mypy>=0.800             # Para type checking
+
+# Export/Import adicional (ya incluidos en Python estándar)
+# json, csv, xml, pickle - Incluidos en Python estándar
