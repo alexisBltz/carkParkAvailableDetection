@@ -1,0 +1,294 @@
+# CarPark Project - .gitignore
+# ================================
+
+# Python
+# --------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff (if ever used)
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff (if ever used)
+instance/
+.webassets-cache
+
+# Scrapy stuff (if ever used)
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# IDEs y Editores
+# ---------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+*.sublime-project
+*.sublime-workspace
+
+# Sistema Operativo
+# ------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# Archivos específicos del proyecto CarPark
+# ==========================================
+
+# Videos y recursos grandes (pueden ser muy pesados para Git)
+assets/*.mp4
+assets/*.avi
+assets/*.mov
+assets/*.mkv
+assets/*.wmv
+assets/*.flv
+assets/*.webm
+
+# Imágenes grandes de prueba (mantener solo ejemplos pequeños)
+assets/*_large.*
+assets/*_test.*
+assets/temp_*
+
+# Archivos de configuración de espacios generados
+assets/spaces_*.json
+assets/spaces_*.pkl
+assets/spaces_*.pickle
+assets/*_backup_*
+assets/*.backup
+
+# Logs del sistema
+logs/
+*.log
+carpark.log
+analysis.log
+debug.log
+
+# Datos exportados y reportes
+exports/
+reports/
+*.csv
+*_stats.csv
+*_occupancy.csv
+analysis_*.csv
+
+# Archivos temporales del proyecto
+temp/
+tmp/
+.temp/
+cache/
+.cache/
+
+# Configuraciones locales del usuario
+config_local.py
+settings_local.py
+user_config.json
+
+# Modelos entrenados y datos de ML (si se implementan)
+models/
+*.h5
+*.pkl
+*.joblib
+training_data/
+
+# Archivos de prueba y desarrollo
+test_images/
+test_videos/
+development/
+scratch/
+playground/
+
+# Archivos de backup automáticos
+*.backup
+*_backup
+backup_*/
+*~
+
+# Archivos de medición de rendimiento
+*.prof
+*.profile
+
+# Archivos de documentación generada
+docs/build/
+docs/_build/
+*.pdf
+
+# Archivos específicos de OpenCV
+*.xml
+haar_cascades/
+
+# Archivos de calibración de cámara
+calibration/
+camera_params.json
+
+# Archivos de configuración de IDE específicos
+.spyproject/
+.ropeproject/
+
+# Archivos de deployment
+deploy/
+deployment/
+docker-compose.override.yml
+
+# Keep
+# ----
+# Mantener estos archivos importantes:
+!assets/carPark.mp4
+!assets/carParkImg.png
+!assets/CarParkPos
+!README.md
+!requirements.txt
+!config.py
+
+# Comentarios adicionales
+# =======================
+# Este .gitignore está diseñado para el proyecto CarPark y incluye:
+# 1. Exclusiones estándar de Python
+# 2. Archivos del sistema operativo
+# 3. Configuraciones de IDEs
+# 4. Archivos específicos del proyecto (videos grandes, logs, etc.)
+# 5. Mantiene los archivos de ejemplo esenciales
+# 
+# Para agregar excepciones específicas, usa el patrón:
+# !archivo_importante.ext
