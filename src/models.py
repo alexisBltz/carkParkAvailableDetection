@@ -53,6 +53,17 @@ class ParkingSpace:
             id=data.get('id'),
             confidence=data.get('confidence', 0.0)
         )
+    
+    def copy(self) -> 'ParkingSpace':
+        """Crea una copia del espacio"""
+        return ParkingSpace(
+            x=self.x,
+            y=self.y,
+            width=self.width,
+            height=self.height,
+            id=self.id,
+            confidence=self.confidence
+        )
 
 @dataclass
 class OccupancyStatus:

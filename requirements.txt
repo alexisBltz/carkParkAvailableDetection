@@ -1,10 +1,11 @@
-# CarPark Project - Dependencias v2.0
-# Incluye dependencias para la versión original Y refactorizada
+# CarPark Project - Dependencias v3.0
+# Incluye dependencias para la versión original Y refactorizada mejorada
 
 # === DEPENDENCIAS PRINCIPALES (REQUERIDAS) ===
 opencv-python>=4.8.0     # Procesamiento de imágenes y video
 numpy>=1.24.0            # Operaciones numéricas
 Pillow>=10.0.0           # Manipulación de imágenes para GUI
+cvzone>=1.6.1            # Utilidades avanzadas para OpenCV
 
 # === GUI DEPENDENCIES ===
 # tkinter - Incluido en Python estándar (no necesita instalación)
